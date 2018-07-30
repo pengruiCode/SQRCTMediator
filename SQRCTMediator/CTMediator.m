@@ -92,7 +92,11 @@
     }
 
     if ([target respondsToSelector:action]) {
-        return [self safePerformAction:action target:target params:params];
+        if ([self safePerformAction:action target:target params:params]) {
+            return [self safePerformAction:action target:target params:params];
+        }else{
+            return [GetClassFailedShowVC sharedInstance];
+        }
     } else {
         // 有可能target是Swift对象
         actionString = [NSString stringWithFormat:@"Action_%@WithParams:", actionName];

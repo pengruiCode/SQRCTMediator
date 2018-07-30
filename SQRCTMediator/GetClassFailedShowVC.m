@@ -35,7 +35,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.navigationController.viewControllers) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end
